@@ -1,0 +1,38 @@
+# Graph Models Configuration (GNN for link prediction)
+
+# Link prediction scoring methods
+link_prediction:
+  method: "common_neighbors"  # common_neighbors, jaccard, adamic_adar
+  top_k: 10
+  min_score_threshold: 0.0
+
+# Graph construction
+graph:
+  edge_file: "data/base/graph_edges.csv"
+  customer_col: "customer"
+  product_col: "product"
+  bipartite: true
+
+# Train/Test split for edges
+split:
+  test_ratio: 0.2
+  mask_per_customer: true
+  min_train_edges_per_node: 2
+
+# Evaluation metrics
+metrics:
+  names:
+    - "hit@k"
+    - "map@k"
+    - "coverage"
+    - "diversity"
+  k_values: [5, 10, 20]
+
+# GNN model (if using PyTorch Geometric)
+gnn:
+  model: "sage"  # gcn, sage, gat
+  hidden_channels: 64
+  num_layers: 3
+  dropout: 0.5
+  learning_rate: 0.01
+  epochs: 100

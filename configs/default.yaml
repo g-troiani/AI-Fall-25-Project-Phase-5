@@ -1,0 +1,39 @@
+# Default Global Configuration
+
+# Paths
+paths:
+  data_base: "data/base"
+  data_derived: "data/derived"
+  outputs: "outputs"
+  models: "outputs/models"
+  artifacts: "outputs/artifacts"
+  logs: "outputs/logs"
+  run_log: "outputs/run_log.csv"
+
+# Seeds for reproducibility
+random_seed: 42
+numpy_seed: 42
+torch_seed: 42
+
+# Device configuration
+device: "cuda"  # cuda, cpu, mps
+num_workers: 4
+
+# Run configuration
+run:
+  experiment_name: "final_project_phase5"
+  track_git: true
+  track_hashes: true
+  verbose: true
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# MLOps
+mlops:
+  enable_run_logging: true
+  log_latency: true
+  log_params: true
+  append_mode: true

@@ -1,0 +1,40 @@
+# Neural Network Models Configuration (P3)
+
+mlp:
+  hidden_layers: [128, 64, 32]
+  activation: "relu"
+  dropout_rate: 0.3
+  batch_norm: true
+  learning_rate: 0.001
+  batch_size: 32
+  epochs: 50
+  early_stopping_patience: 10
+
+cnn:
+  conv_channels: [32, 64, 128]
+  kernel_sizes: [3, 3, 3]
+  pool_sizes: [2, 2, 2]
+  fc_layers: [256, 128]
+  dropout_rate: 0.5
+  learning_rate: 0.001
+  batch_size: 64
+  epochs: 50
+
+# MC Dropout for uncertainty
+mc_dropout:
+  enabled: true
+  n_samples: 50
+  dropout_rate: 0.3
+
+# Calibration
+calibration:
+  method: "temperature_scaling"  # temperature_scaling, isotonic, platt
+  validation_split: 0.2
+
+# Training
+training:
+  optimizer: "adam"
+  loss: "cross_entropy"  # or mse for regression
+  weight_decay: 0.0001
+  scheduler: "reduce_on_plateau"
+  scheduler_patience: 5

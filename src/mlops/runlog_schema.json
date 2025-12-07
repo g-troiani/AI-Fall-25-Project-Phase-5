@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Run Log Schema",
+  "description": "Schema for outputs/run_log.csv - tracks all experiment runs",
+  "type": "object",
+  "required": [
+    "run_id",
+    "timestamp",
+    "git_commit",
+    "data_hash",
+    "config_hash",
+    "seed",
+    "component",
+    "metric_name",
+    "metric_value"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "description": "Unique identifier for this run (UUID or timestamp-based)",
+      "example": "run_20250106_123045_abc123"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the run started",
+      "example": "2025-01-06T12:30:45Z"
+    },
+    "git_commit": {
+      "type": "string",
+      "description": "Git commit hash (short) or 'nogit' if not in a git repository",
+      "example": "a1b2c3d"
+    },
+    "data_hash": {
+      "type": "string",
+      "description": "SHA256 hash of input data file(s) for reproducibility",
+      "example": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "config_hash": {
+      "type": "string",
+      "description": "SHA256 hash of configuration YAML used",
+      "example": "d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"
+    },
+    "seed": {
+      "type": "integer",
+      "description": "Random seed used for this run",
+      "example": 42
+    },
+    "component": {
+      "type": "string",
+      "enum": ["classic", "neural", "sequential", "generative", "graph", "rl", "ensemble"],
+      "description": "Which component/model type was trained",
+      "example": "classic"
+    },
+    "metric_name": {
+      "type": "string",
+      "description": "Name of the metric being logged",
+      "examples": ["accuracy", "f1_score", "mae", "rmse", "hit@10", "episodic_return"]
+    },
+    "metric_value": {
+      "type": "number",
+      "description": "Value of the metric",
+      "example": 0.8523
+    },
+    "latency_ms": {
+      "type": "number",
+      "description": "Inference latency in milliseconds (optional)",
+      "example": 12.34
+    },
+    "params_json": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "JSON string of key hyperparameters (keep concise)",
+      "example": "{\"lr\":0.001,\"batch_size\":32,\"epochs\":50}"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes about this run",
+      "example": "Baseline model with default hyperparameters"
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "run_id": "run_20250106_123045_abc123",
+      "timestamp": "2025-01-06T12:30:45Z",
+      "git_commit": "a1b2c3d",
+      "data_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config_hash": "d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6",
+      "seed": 42,
+      "component": "classic",
+      "metric_name": "accuracy",
+      "metric_value": 0.8523,
+      "latency_ms": 12.34,
+      "params_json": "{\"model\":\"random_forest\",\"n_estimators\":100}",
+      "notes": "Baseline random forest"
+    },
+    {
+      "run_id": "run_20250106_130000_def456",
+      "timestamp": "2025-01-06T13:00:00Z",
+      "git_commit": "a1b2c3d",
+      "data_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "config_hash": "x1y2z3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p9q0r1s2",
+      "seed": 42,
+      "component": "neural",
+      "metric_name": "f1_score",
+      "metric_value": 0.8912,
+      "latency_ms": 45.67,
+      "params_json": "{\"model\":\"mlp\",\"hidden_layers\":[128,64,32]}",
+      "notes": "MLP with 3 hidden layers"
+    }
+  ]
+}

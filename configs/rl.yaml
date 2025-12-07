@@ -1,0 +1,52 @@
+# Reinforcement Learning Configuration (Q-Learning)
+
+q_learning:
+  # Learning parameters
+  learning_rate: 0.1
+  alpha_decay: 0.999  # alpha_t = alpha_0 / (1 + t / tau)
+  alpha_decay_tau: 1000
+  alpha_min: 0.01
+
+  # Exploration parameters
+  epsilon: 0.1
+  epsilon_decay: 0.995
+  epsilon_min: 0.01
+
+  # Discount factor
+  gamma: 0.95
+
+  # Training
+  num_episodes: 1000
+  max_steps_per_episode: 200
+
+# Environment
+gridworld:
+  grid_file: "data/base/gridworld.csv"
+  grid_size: [5, 5]
+  start_state: [0, 0]
+  goal_states: [[4, 4]]
+
+# Actions (up, down, left, right)
+actions:
+  - [0, 1]   # up
+  - [0, -1]  # down
+  - [-1, 0]  # left
+  - [1, 0]   # right
+
+# Rewards
+rewards:
+  goal: 100.0
+  step: -1.0
+  wall: -10.0
+  default: 0.0
+
+# Visualization
+visualization:
+  save_policy_heatmap: true
+  save_return_curve: true
+  plot_frequency: 100  # episodes
+
+# Evaluation
+evaluation:
+  test_episodes: 100
+  render: false

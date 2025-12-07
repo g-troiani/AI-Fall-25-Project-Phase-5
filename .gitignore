@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Data (keep structure, ignore large files but include input.csv)
+!data/base/input.csv
+data/base/*.xlsx
+data/base/*.json
+data/derived/*.csv
+data/derived/*.pkl
+data/derived/*.parquet
+
+# Outputs
+outputs/models/*.pkl
+outputs/models/*.pt
+outputs/models/*.h5
+outputs/models/*.joblib
+outputs/logs/*.log
+outputs/logs/*.txt
+outputs/predictions/*.csv
+outputs/visualizations/*.png
+outputs/visualizations/*.jpg
+outputs/visualizations/*.pdf
+
+# Keep directory structure
+!data/base/.gitkeep
+!data/derived/.gitkeep
+!outputs/models/.gitkeep
+!outputs/logs/.gitkeep
+!outputs/predictions/.gitkeep
+!outputs/visualizations/.gitkeep
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS
+Thumbs.db

@@ -1,0 +1,31 @@
+# Data Configuration
+data:
+  base_dir: "data/base"
+  derived_dir: "data/derived"
+
+  # Source data
+  input_file: "input.csv"
+
+  # Feature engineering
+  features:
+    numeric:
+      - "revenue"
+      - "quantity"
+      - "discount"
+    categorical:
+      - "product_category"
+      - "customer_segment"
+      - "region"
+
+  # Preprocessing
+  preprocessing:
+    missing_value_strategy: "mean"  # mean, median, mode, drop
+    scaling_method: "standard"      # standard, minmax, robust
+    categorical_encoding: "onehot"  # onehot, label, target
+
+  # Train/Val/Test split
+  split:
+    train_ratio: 0.7
+    val_ratio: 0.15
+    test_ratio: 0.15
+    random_seed: 42
