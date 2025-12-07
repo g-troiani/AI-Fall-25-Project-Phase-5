@@ -127,30 +127,52 @@
 
 ---
 
-## Slide 5: Results - Ablation & Fairness (2 min)
+## Slide 5: Results - Ablation & Trade-offs (2 min)
 
-**Ablation Study: VAE Augmentation**
+**Title**: Key Trade-offs & Ablation Insights
 
-| Augmentation Ratio | Accuracy | F1-Score | Gain |
-|--------------------|----------|----------|------|
-| 0% (baseline) | 85.2% | 0.78 | - |
-| 10% synthetic | 85.6% | 0.79 | +0.4% |
-| 25% synthetic | 85.8% | 0.80 | +0.6% |
+**Layout**: Three side-by-side "insight cards" (no graphs needed - text-based with icons)
 
-**Fairness Analysis: Per-Position Performance**
+---
 
-| Player Position | Accuracy | F1-Score | Samples |
-|-----------------|----------|----------|---------|
-| WR (Wide Receiver) | 86.5% | 0.81 | 4,500 |
-| TE (Tight End) | 84.2% | 0.76 | 2,100 |
-| RB (Running Back) | 83.1% | 0.74 | 1,800 |
+**Card 1: Data Augmentation (VAE)**
 
-**Observation**: Performance bias toward WR (more training data, predictable patterns)
+| Config | Result | Verdict |
+|--------|--------|---------|
+| No augmentation | Baseline | - |
+| +10% synthetic | +4.4% accuracy | **Best** |
+| +25% synthetic | +2.9% accuracy | Diminishing returns |
 
-**Visuals**:
-- Line chart: Accuracy vs. augmentation ratio
-- Bar chart: Per-position performance comparison
-- Highlight fairness considerations
+**Takeaway**: Small augmentation helps; too much hurts (overfitting to synthetic patterns)
+
+---
+
+**Card 2: Latency vs. Accuracy Trade-off**
+
+| Model | Accuracy | Latency | Use Case |
+|-------|----------|---------|----------|
+| DecisionTree | 76.5% | **0.05ms** | Real-time, resource-limited |
+| Transformer | 80.9% | 6.63ms | Offline analysis |
+
+**Takeaway**: 12x slower for only 4% gain - choose based on deployment constraints
+
+---
+
+**Card 3: Uncertainty vs. Confidence**
+
+| Model | Prediction | MC Dropout Std | Action |
+|-------|------------|----------------|--------|
+| LSTM | Trajectory | 2.13 (high) | Flag for review |
+| Transformer | Trajectory | 1.18 (low) | Auto-approve |
+
+**Takeaway**: Transformer predictions are more certain - prefer for automated pipelines
+
+---
+
+**Presenter Notes**:
+- Emphasize that these are DESIGN DECISIONS, not just metrics
+- Each trade-off has a clear recommendation
+- Avoid showing fine decimal differences in charts - use categorical verdicts instead
 
 ---
 
