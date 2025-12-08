@@ -34,5 +34,9 @@ pytest-cov>=4.1.0
 # Graph processing
 networkx>=3.1
 
+# Explainability (XAI)
+shap>=0.42.0
+lime>=0.2.0
+
 # Document generation
 python-docx>=0.8.11
