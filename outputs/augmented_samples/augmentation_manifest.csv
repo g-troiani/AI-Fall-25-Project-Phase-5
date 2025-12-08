@@ -1,0 +1,8 @@
+filename,n_samples,augmentation_type,description
+original_samples.csv,100,none,Original trajectory samples
+rotated_90deg_samples.csv,100,rotate_90,90-degree rotation around field center
+rotated_180deg_samples.csv,100,rotate_180,180-degree rotation around field center
+flipped_horizontal_samples.csv,100,flip_horizontal,Horizontal flip (mirror across y-axis)
+flipped_vertical_samples.csv,100,flip_vertical,Vertical flip (mirror across x-axis)
+noisy_samples.csv,100,gaussian_noise,Gaussian noise (σ=0.5) on position features
+all_augmented_samples.csv,600,combined,All augmentation types combined
